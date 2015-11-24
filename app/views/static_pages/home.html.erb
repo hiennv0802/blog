@@ -1,0 +1,19 @@
+<% provide(:title, "Home") %>
+<html>
+  <head>
+    <title><%= yield(:title) %> | Blog</title>
+  </head>
+  <body>
+    <div class="center jumbotron">
+      <h1>Welcome to the Blog app</h1>
+      <h2>
+        <p>This is the home page</p>
+        <p>Follow me on facebook
+          <a href="http://www.facebook.com/hiennv.th">NguyenVanHien</a>
+        </p>
+
+      </h2>
+      <%= link_to "Sign up now!", signup_path , class: "btn btn-lg btn-primary" %>
+    </div>
+  </body>
+</html>
