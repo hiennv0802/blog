@@ -215,9 +215,10 @@ span.picture {
 }
 
 .users.follow {
+  list-style-type: none;
   padding: 0;
   li {
-    line-height: 7;
+    line-height: 4;
   }
 }
 .panel-body {
@@ -245,8 +246,11 @@ span.picture {
     font-size: 16px;
   }
 }
-.users li {
-  margin-top:80px;
+.users {
+  list-style-type: none;
+  li {
+    margin-top: 60px;
+  }
   img {
     width: 70px;
     height: 70px;
@@ -254,5 +258,18 @@ span.picture {
   a {
     font-size: 18px;
 
+  }
+}
+.user-follow{
+  list-style-type: none;
+  li {
+    margin-top: 70px;
+    img {
+      width: 60px;
+      height: 60px;
+    }
+    a {
+      font-size: 16px;
+    }
   }
 }
