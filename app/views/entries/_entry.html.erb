@@ -1,12 +1,39 @@
 <li id="entry-<%= entry.id %>">
-<%= link_to gravatar_for(entry.user), entry.user %>
-  <span class="user"><%= link_to entry.user.name, entry.user %></span>
-  <span class="title"><%= entry.title %></span>
-  <span class="body"><%= entry.body %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(entry.created_at) %> ago.
-    <% if current_user?(entry.user) %>
-      <%=link_to "Delete", entry, method: :delete, data: {confirm: "Are you sure delete this entry?"} %>
-    <% end %>
-  </span>
+  <div class="panel-heading">
+    <div class="avatar">
+      <%= link_to gravatar_for(entry.user), entry.user, class:"avatar-user" %>
+      <span class="user"><%= link_to entry.user.name, entry.user %></span>
+    </div>
+    <span class="title"><%= entry.title %></span>
+    <span class="timestamp">
+      <%= time_ago_in_words(entry.created_at) %> ago
+      <% if current_user?(entry.user) %>
+        <%=link_to "Delete", entry, class: "delete", method: :delete, data: {confirm: "Are you sure delete this entry?"} %>
+      <% end %>
+    </span>
+  </div>
+  <div class="panel-body">
+    <div class="entry-content">
+      <span class="entry-body">
+          <%= entry.body %>
+      </span>
+      <br/>
+      <div class="comments" id="entry-comment-id-<%= entry.id %>">
+        <% if logged_in? %>
+          <%= form_for Comment.new do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+            <div class="field">
+              <%= f.hidden_field :entry_id, value: entry.id %>
+              <%= f.text_field :content, placeholder: "Leave a comment...", class: "post-comment-#{entry.id} form-control" %>
+              <%= f.submit "Comment", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <div class="row" id="entry-comment-<%= entry.id %>">
+          <%= render entry.comments %>
+        </div>
+      </div>
+    </div>
+  </div>
 </li>

@@ -1,5 +1,6 @@
 <%= form_for(@entry) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
+
   <div class="field">
     <%= f.text_area :title, placeholder: "Compose a new title...", class: 'textTitle' %>
     <%= f.text_area :body, placeholder: "Compose a new body content..." %>
